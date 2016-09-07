@@ -4,3 +4,6 @@ for f in plugins/check_*; do if test -x $f ; then ./$f --help > /dev/null; if [ 
 for f in plugins/check_*; do if test -x $f ; then ./$f --version > /dev/null; if [ $? -gt 0 ]; then echo $f failed; fi; fi; done
 for f in check_*; do if test -x $f ; then ./$f --help > /dev/null; if [ $? -gt 0 ]; then echo $f failed; fi; fi; done
 for f in check_*; do if test -x $f ; then ./$f --version > /dev/null; if [ $? -gt 0 ]; then echo $f failed; fi; fi; done
+
+# Tar the thing
+tar -cvzf ../nagios-plugins-$VERSION.tar.gz --exclude=.git --transform "s/^\./nagios-plugins-$VERSION/" .
